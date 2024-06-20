@@ -1,22 +1,25 @@
 import React from 'react';
-import { UserProvider } from './UserContext';
-import { ThemeProvider } from './ThemeContext';
-import MainComponent from './MainComponent';
-import FirstComponent from './FirstComponent';
-import SecondComponent from './SecondComponent';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Container, CssBaseline } from '@mui/material';
+import Menu from './components/Menu';
+import TextComponent1 from './components/TextComponent1';
+import TextComponent2 from './components/TextComponent2';
+import DynamicContent from './components/DynamicContent';
 
-const App = () => {
+function App() {
     return (
-        <UserProvider>
-            <ThemeProvider>
-                <div>
-                    <MainComponent />
-                    <FirstComponent />
-                    <SecondComponent />
-                </div>
-            </ThemeProvider>
-        </UserProvider>
+        <Router>
+            <CssBaseline />
+            <Menu />
+            <Container>
+                <Routes>
+                    <Route path="/" element={<TextComponent1 />} />
+                    <Route path="/content" element={<TextComponent2 />} />
+                    <Route path="/dynamic/:info" element={<DynamicContent />} />
+                </Routes>
+            </Container>
+        </Router>
     );
-};
+}
 
 export default App;
