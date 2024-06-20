@@ -1,21 +1,21 @@
 import React from 'react';
-import { UserProvider } from './UserContext';
-import { ThemeProvider } from './ThemeContext';
-import MainComponent from './MainComponent';
-import FirstComponent from './FirstComponent';
-import SecondComponent from './SecondComponent';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Menu from './Menu';
+import TextComponent1 from './TextComponent1';
+import TextComponent2 from './TextComponent2';
+import './App.css';
 
 const App = () => {
     return (
-        <UserProvider>
-            <ThemeProvider>
-                <div>
-                    <MainComponent />
-                    <FirstComponent />
-                    <SecondComponent />
-                </div>
-            </ThemeProvider>
-        </UserProvider>
+        <Router>
+            <div>
+                <Menu />
+                <Routes>
+                    <Route path="/" element={<TextComponent1 />} />
+                    <Route path="/text2" element={<TextComponent2 />} />
+                </Routes>
+            </div>
+        </Router>
     );
 };
 
