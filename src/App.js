@@ -1,22 +1,18 @@
 import React from 'react';
-import { UserProvider } from './UserContext';
-import { ThemeProvider } from './ThemeContext';
-import MainComponent from './MainComponent';
-import FirstComponent from './FirstComponent';
-import SecondComponent from './SecondComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement } from './slices/myComponentSlice';
 
-const App = () => {
+const MyComponent = () => {
+    const dispatch = useDispatch();
+    const value = useSelector((state) => state.myComponent.value);
+
     return (
-        <UserProvider>
-            <ThemeProvider>
-                <div>
-                    <MainComponent />
-                    <FirstComponent />
-                    <SecondComponent />
-                </div>
-            </ThemeProvider>
-        </UserProvider>
+        <div>
+            <h1>Value: {value}</h1>
+            <button onClick={() => dispatch(increment())}>Increment</button>
+            <button onClick={() => dispatch(decrement())}>Decrement</button>
+        </div>
     );
 };
 
-export default App;
+export default MyComponent;
